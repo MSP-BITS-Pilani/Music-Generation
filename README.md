@@ -9,7 +9,7 @@ An NLP project to generate novel music
 
 ### Major TODOs
 
-- Implement a data input pipeline (dataset needs to be found for this - leaning towards dataset from Mutopia. Might have to scrape the site for the download links)
+- Implement a data input pipeline (dataset needs to be found for this - leaning towards dataset from [Mutopia](https://www.mutopiaproject.org/). Might have to scrape the site for the download links)
 - Implement 1D causal convolutions (PixelCNNs) and hence the entire wavenet model
 - Experiment with model sizes and hyperparams 
 
