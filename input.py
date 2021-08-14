@@ -11,6 +11,7 @@ def extract_data():
     # go through the files and pick out the right directory to use, shuffling, all that messing around
     path = 'G:\My Drive\Music Generation\IRMAS-TrainingData\cel'
     #Using a placeholder path that consists of (mainly) a single instrument to avoid the complexity of polyphonic music. Will have to be decided upon later.
+    ### Add a function parameter asking which instrument to use, you can also provide a list of allowed strings in the readme or sth
     file_names = []
     for file in os.listdir(path):
         file_names.append(path + '\\' + file)
@@ -36,6 +37,7 @@ def visualize_waveform(wave):
 
 def load_audio_mono(file_list):
     # In case we are using mono music (1 channel) instead of stereo  (2 channels), since it is easier, and the vector size is halved.
+    ### use mono for now, if needed, we can implement stereo as well
     tensor_list = []
     for song in file_list:
         x, sr = librosa.load(song, sr=22050) 
