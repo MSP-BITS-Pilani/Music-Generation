@@ -7,9 +7,9 @@ import random
 
 
 
-def extract_data():
+def extract_data(instr):
     # go through the files and pick out the right directory to use, shuffling, all that messing around
-    path = 'G:\My Drive\Music Generation\IRMAS-TrainingData\cel'
+    path = 'G:\My Drive\Music Generation\IRMAS-TrainingData\\'+instr
     #Using a placeholder path that consists of (mainly) a single instrument to avoid the complexity of polyphonic music. Will have to be decided upon later.
     ### Add a function parameter asking which instrument to use, you can also provide a list of allowed strings in the readme or sth
     file_names = []
@@ -29,7 +29,22 @@ def load_audio(directory_list):
 def play_sample(filename):
     # pyaudio seems to be better than playsound (which we discussed because its not been maintained in a while)
     # given a file name make it play the sample
-    pass
+    chunk_size = 1024
+    wf = wave.open(filename,'rb')
+    interface = pyaudio.PyAudio()
+    stream = interface.open(format=interface.get_format_from_width(wf.getsampwidth()), channels=wf.getnchannels(), rate=wf.getframerate(), output=True)
+    
+    aud_data = wf.readframes(chunk_size)
+    
+    while len(aud_data)>0:
+        stream.write(aud_data)
+        aud_data = wf.readframes(chunk_size)
+    
+    stream.stop_stream()
+    stream.close()
+    wf.close()
+    interface.terminate()
+    
 
 def visualize_waveform(wave):
     # given a waveforrm plot it. if given a list of waveforms, then use subplots
