@@ -27,9 +27,9 @@ def load_audio(directory_list):
     waveforms=list()
     for path in directory_list:
         parts=tf.strings.split(path, os.path.sep)
-        label=parts[-2]
+        label=parts[-2]                  #Are labels needed? Since we will be shuffling data randomly.
         audio_binary = tf.io.read_file(path)
-        waveform = tf.audio.decode_wav(audio_binary)
+        waveform, sr = tf.audio.decode_wav(audio_binary)
         waveforms.append(waveform)
         
     return waveforms
@@ -56,9 +56,11 @@ def play_sample(filename):
     
 
 def visualize_waveform(wave):
-    # given a waveforrm plot it. if given a list of waveforms, then use subplots
-    pass
-
+    tensor = tf.cast(wf,tf.float32) / 32768.0
+    plt.figure()
+    plt.plot(tensor.numpy())
+    #temporary. ToDo: use a different waveform generator
+    
 def load_audio_mono(file_list):
     # In case we are using mono music (1 channel) instead of stereo  (2 channels), since it is easier, and the vector size is halved.
     ### use mono for now, if needed, we can implement stereo as well
