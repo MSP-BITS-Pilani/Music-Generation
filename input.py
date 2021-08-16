@@ -23,8 +23,17 @@ def extract_data(instr):
 def load_audio(directory_list):
     # use decode_wav from the audio submodule to read *.wav files
     # get the list of files and read them into a tensor
-    # split into train, val, test
-    pass
+    # split into train, val, test (is there a need since the dataset already has multiple testing sets)
+    waveforms=list()
+    for path in directory_list:
+        parts=tf.strings.split(path, os.path.sep)
+        label=parts[-2]
+        audio_binary = tf.io.read_file(path)
+        waveform = tf.audio.decode_wav(audio_binary)
+        waveforms.append(waveform)
+        
+    return waveforms
+    
 
 def play_sample(filename):
     # pyaudio seems to be better than playsound (which we discussed because its not been maintained in a while)
