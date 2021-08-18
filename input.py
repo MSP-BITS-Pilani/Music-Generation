@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 import pyaudio
 import os
-import librosa
+import librosa, librosa.display
 import random
 
 
@@ -56,10 +56,9 @@ def play_sample(filename):
     
 
 def visualize_waveform(wave):
-    tensor = tf.cast(wf,tf.float32) / 32768.0
-    plt.figure()
-    plt.plot(tensor.numpy())
-    #temporary. ToDo: use a different waveform generator
+   #plot a graph for a given .wav file
+    x,sr=librosa.load(wave)
+    librosa.display.waveplot(x, sr)
     
 def load_audio_mono(file_list):
     # In case we are using mono music (1 channel) instead of stereo  (2 channels), since it is easier, and the vector size is halved.
