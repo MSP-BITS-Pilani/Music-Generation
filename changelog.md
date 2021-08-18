@@ -1,4 +1,8 @@
 # Change Log
+
+###18-Aug-2021 : updated visualize_data in input.py, Arvind
+Modified code in visualize_data to plot a graph for a given .wav file using librosa. TODO: Decide what to pass into conv layers.
+
 ### 16-Aug-2021 : updated input.py, Abhigyan###
 Added code to the functions load_audio to input a filepath containing .wav files and return a list of tensors containing decoded float32 np arrays. Added functionality to play_sample using PyAudio that takes in a filename and plays the corresponding .wav audio. Made functional temporarily visualize_waveform using tensorflow(to be updated) and modified parameters of extract_data to include an option of instrument of choice. ToDo Add a readme file listing allowed inputs for the same.   
 
