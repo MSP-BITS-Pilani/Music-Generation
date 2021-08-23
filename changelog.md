@@ -1,5 +1,9 @@
 # Change Log
 
+### 23-Aug-2021 : added gan.py, Abhay
+Added gan.py with the model definitions and the train function. SpecGAN architecture, with a couple differences. Used the basic loss function, can try out others later. 
+TODO: A couple preprocessing and display functions, as well as a save function for the model at points. Will work on that.
+
 ###18-Aug-2021 : updated visualize_data in input.py, Arvind
 Modified code in visualize_data to plot a graph for a given .wav file using librosa. TODO: Decide what to pass into conv layers.
 
