@@ -1,5 +1,9 @@
 # Change Log
 
+### 2-Sept-2021 : implemeted VAE model, Arvind
+Added code to train.py to train a VAE model.
+TODO: Figure out the input_shape.
+
 ### 23-Aug-2021 : added gan.py, Abhay
 Added gan.py with the model definitions and the train function. SpecGAN architecture, with a couple differences. Used the basic loss function, can try out others later. 
 TODO: A couple preprocessing and display functions, as well as a save function for the model at points. Will work on that.
