@@ -1,5 +1,10 @@
 # Change Log
 
+### 7-Sept-2021 : updated gan.py and input.py slightly, Abhay
+Added a save function to the generator model every 20 epochs.
+Also added a function in input.py to convert the audio arrays into melspectograms. Added a display function if we want to see the generated spectograms.
+TODO: Discuss how to normalize (to (0, 1)) and denormalize the spectograms. Didn't really get how they did it in specgan
+
 ### 2-Sept-2021 : implemeted VAE model, Arvind
 Added code to train.py to train a VAE model.
 TODO: Figure out the input_shape.

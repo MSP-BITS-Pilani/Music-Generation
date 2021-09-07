@@ -72,3 +72,31 @@ def load_audio_mono(file_list):
     #       Make use of tf.data.Datasets for convenience in batching and the like.
     #       Figure out what exactly we are passing to the conv layers and in what shape.       
     pass
+
+
+def audio_to_mel(list):
+    mel_spec_list = []
+    for sample in list:
+        mel_spec_list.append(librosa.feature.melspectogram(y = sample))
+    return mel_spec_list
+
+
+def normalize_mel(spectogram):
+    pass
+
+
+def denormalize_mel(melspectogram):
+    pass
+
+
+def mel_to_audio(spec):
+    pass
+
+
+def plot_spectograms(melspec_list):
+    #If we want to see the denormalized spectograms for some reason. Here 9 will be shown. Changeable.
+    for i in range(9):
+        plt.subplot(3, 3, i + 1)
+        plt.axis('off')
+        plt.imshow(melspec_list[i])
+    plt.show()

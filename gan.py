@@ -18,6 +18,7 @@ def get_fake(model, size):
 
 
     return X_fake, y_fake
+
     
 def generator():
     #Basically using SpecGAN with transposed convolutions instead of Conv + Upsampling layers, LeakyRELU instead of RELU, and Dropout
@@ -91,6 +92,9 @@ def train_gan(model_gen, model_disc, directory, model_combined, epochs = 500, ba
             yt = np.ones((batch_size, 1))
             gen_loss = model_combined.train_on_batch(Xt, yt)
             print('Epoch : %d/%d, Batch : %d/%d, DLoss: %.3f, GLoss : %.3f' % (i + 1, j + 1, disc_loss, gen_loss))
-            #Need to define a function to save checkpoints
-    
+            
+        if (i + 1) % 20 == 0:
+            name = 'Epoch %d Model.h5' % (i + 1)
+            model_gen.save(name)
+
     return
