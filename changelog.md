@@ -1,5 +1,9 @@
 # Change Log
 
+### 15-Sept-2021 : updated gan.py and input.py, Abhay
+Finished up the gan specific functions, and most of the spectogram normalization and resizing functions (lifted straight from specgan). 
+Implementing an inverse spectogram function is yet to be done. Debugging and optimization after that.
+
 ### 7-Sept-2021 : updated gan.py and input.py slightly, Abhay
 Added a save function to the generator model every 20 epochs.
 Also added a function in input.py to convert the audio arrays into melspectograms. Added a display function if we want to see the generated spectograms.

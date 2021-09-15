@@ -4,6 +4,7 @@ import pyaudio
 import os
 import librosa, librosa.display
 import random
+import numpy as np
 
 
 
@@ -77,16 +78,45 @@ def load_audio_mono(file_list):
 def audio_to_mel(list):
     mel_spec_list = []
     for sample in list:
-        mel_spec_list.append(librosa.feature.melspectogram(y = sample))
+        spect = librosa.feature.melspectogram(y = sample)
+        mel_spec_list.append(spect)
     return mel_spec_list
 
+def get_mean_and_std(spec_list):
+    means = []
+    stds = []
+    for spec in spec_list:
+        means.append(np.mean(spec, axis = 1))
+        stds.append(np.std(spec, axis = 1))
+    mean = np.mean(means, axis = 0)
+    std = np.mean(stds, axis = 0)
+    return mean, std
 
-def normalize_mel(spectogram):
-    pass
+def normalize_mel(spectogram_list, spec_mean, spec_std):
+    norm_spec = []
+    for item in spectogram_list:
+        norm_item = (item - spec_mean) / (3.0 * spec_std)  
+        clipped = np.clip(norm_item, -1.0, 1.0)
+        norm_spec.append(clipped)
+    return norm_spec
 
 
-def denormalize_mel(melspectogram):
-    pass
+def denormalize_mel(melspectogram_list, mean_spec, std_spec):
+    denorm_spec = []
+    for gram in melspectogram_list:
+        denorm_gram = (gram * (3.0 * std_spec)) + mean_spec
+        denorm_spec.append(denorm_gram)
+    return denorm_spec
+
+def load_spec(mel_list):
+    append = np.ones((128, 128)) * (-80)
+    right_size_mel = []
+    for melspec in mel_list:
+        melspec = np.hstack((melspec,append))
+        melspec = melspec[:, :128]
+        right_size_mel.append(melspec)
+    return right_size_mel
+        
 
 
 def mel_to_audio(spec):

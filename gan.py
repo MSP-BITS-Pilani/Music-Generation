@@ -3,12 +3,20 @@ from tensorflow import keras
 from tensorflow.keras import layers
 import os
 import numpy as np
+import random
 
 
 def random_input(dimension, b_size):
     rand = np.reshape(np.random.randn(dimension * b_size), (b_size, dimension))
     
     return rand
+
+
+def get_real(list, batch_size):
+    index = random.sample(range(0, list.shape[0]), batch_size)
+    X_real = list[index]
+    y_real = np.ones((batch_size, 1))
+    return X_real, y_real
 
 
 def get_fake(model, size):
